@@ -5,7 +5,6 @@ const router = new Router();
 
 const mongoCarritos = carritosDao();
 
-
 router.get('/', async(req, res) =>{
     try {
         const allCarts = await mongoCarritos.getAll()
@@ -48,20 +47,9 @@ router.delete('/:id', async (req, res) =>{
 
 router.delete('/', async(req, res) => {
     try {
-        const productosBorrados = await mongoProductos.deleteAll()
-        res.json(productosBorrados)
+        const carritosBorrados = await mongoCarritos.deleteAll()
+        res.json(carritosBorrados)
 
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-router.put('/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { stock } = req.body;
-        const productoUpdate = await mongoProductos.updateStockById(id, stock)
-        res.json(productoUpdate)
     } catch (error) {
         console.log(error)
     }
